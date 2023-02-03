@@ -4,31 +4,30 @@ import java.util.EnumSet;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.cpan252.tekkenreborn.model.Fighter;
-import com.cpan252.tekkenreborn.model.Fighter.Anime;
 import com.cpan252.tekkenreborn.model.FighterPool;
+import com.cpan252.tekkenreborn.model.Fighter.Anime;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @Slf4j
 @RequestMapping("/design")
 @SessionAttributes("fighterPool")
-public class DesignController {
+public class DesignController{
+
     @GetMapping
     public String design() {
         return "design";
     }
-
 
     @ModelAttribute
     public void animes(Model model) {
@@ -37,13 +36,12 @@ public class DesignController {
         log.info("animes converted to string:  {}", animes);
     }
 
-
     @ModelAttribute(name = "fighterPool")
     public FighterPool fighterPool() {
         return new FighterPool();
     }
 
-
+   
     @ModelAttribute
     public Fighter fighter() {
         return Fighter
@@ -51,14 +49,15 @@ public class DesignController {
                 .build();
     }
 
-
     @PostMapping
     public String processFighterAddition(@Valid Fighter fighter,
-            @ModelAttribute FighterPool pool, BindingResult result) {
-        if (result.hasErrors()) {
+            @ModelAttribute FighterPool pool, Errors errors) {
+        if (errors.hasErrors()) {
             return "design";
         }
-        pool.add(fighter);
-        return "redirect:/design";
+        else{
+            pool.add(fighter);
+            return "redirect:/design";}
     }
+
 }
