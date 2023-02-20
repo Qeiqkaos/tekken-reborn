@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cpan252.tekkenreborn.model.Fighter;
-import com.cpan252.tekkenreborn.repository.impl.JdbcFighterRepository;
+import com.cpan252.tekkenreborn.repository.FighterRepository;
 import com.cpan252.tekkenreborn.model.Fighter.Anime;
 
 import jakarta.validation.Valid;
@@ -36,7 +36,7 @@ public class DesignController{
     }
 
     @Autowired
-    private JdbcFighterRepository fighterRepository;
+    private FighterRepository fighterRepository;
 
    
     @ModelAttribute
@@ -53,7 +53,7 @@ public class DesignController{
         }
         log.info("Processing fighter: {}", fighter);
         fighterRepository.save(fighter);
-        return "redirect:/design";
+        return "redirect:/fighterlist";
     }   
 
 }
