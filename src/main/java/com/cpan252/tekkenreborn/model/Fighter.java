@@ -3,11 +3,13 @@ package com.cpan252.tekkenreborn.model;
 import lombok.Builder;
 
 import java.math.BigDecimal;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -17,9 +19,12 @@ import lombok.Data;
 
 @Data
 @Builder
-@Table
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Fighter {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String name;
@@ -32,7 +37,7 @@ public class Fighter {
     private BigDecimal resistance;
     private Anime animeFrom;
     @Builder.Default
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDate createdAt = LocalDate.now();
 
     public enum Anime {
         NARUTO("Naruto"), BLEACH("Bleach"), ONE_PIECE("One Piece"), TEKKEN("Tekken");

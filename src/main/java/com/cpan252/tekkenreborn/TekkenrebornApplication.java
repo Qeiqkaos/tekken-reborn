@@ -47,6 +47,55 @@ public class TekkenrebornApplication {
 			.damagePerHit(89)
 			.health(2300)
 			.resistance(new BigDecimal(0.5)).build());
+
+			repository.save(Fighter.builder()
+			.name("Sakura Haruno")
+			.animeFrom(Anime.NARUTO)
+			.damagePerHit(2)
+			.health(2400)
+			.resistance(new BigDecimal(0.5)).build());
+			
+			repository.save(Fighter.builder()
+			.name("Kakashi Hatake")
+			.animeFrom(Anime.NARUTO)
+			.damagePerHit(99)
+			.health(2000)
+			.resistance(new BigDecimal(0.5)).build());
+			
+			repository.save(Fighter.builder()
+			.name("Boruto Uzumaki")
+			.animeFrom(Anime.NARUTO)
+			.damagePerHit(1)
+			.health(2300)
+			.resistance(new BigDecimal(0.5)).build());
+			
+			repository.save(Fighter.builder()
+			.name("Sarada Uchiha")
+			.animeFrom(Anime.NARUTO)
+			.damagePerHit(8)
+			.health(2300)
+			.resistance(new BigDecimal(0.5)).build());
+			
+			repository.save(Fighter.builder()
+			.name("Mitsuki")
+			.animeFrom(Anime.NARUTO)
+			.damagePerHit(49)
+			.health(2300)
+			.resistance(new BigDecimal(0.5)).build());
+			
+			repository.save(Fighter.builder()
+			.name("Hinata Hyuga")
+			.animeFrom(Anime.NARUTO)
+			.damagePerHit(59)
+			.health(2300)
+			.resistance(new BigDecimal(0.5)).build());
+			
+			repository.save(Fighter.builder()
+			.name("Kiba Inuzuka")
+			.animeFrom(Anime.NARUTO)
+			.damagePerHit(69)
+			.health(2750)
+			.resistance(new BigDecimal(0.5)).build());
 		};
 
 }}
