@@ -1,7 +1,7 @@
 package com.cpan252.tekkenreborn.model;
 
 import lombok.Builder;
-
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import jakarta.persistence.Entity;
@@ -42,6 +42,8 @@ public class Fighter {
     public enum Anime {
         NARUTO("Naruto"), BLEACH("Bleach"), ONE_PIECE("One Piece"), TEKKEN("Tekken");
 
+        @JsonValue
+        @NotBlank
         private String title;
 
         private Anime(String title) {

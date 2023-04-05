@@ -34,31 +34,24 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .authorizeHttpRequests()
-                .requestMatchers("/design", "/fighterlist")
-                .hasRole("USER")
-                .requestMatchers(toH2Console()).permitAll()
-                .anyRequest().permitAll()
+        http
+        .authorizeHttpRequests()
+        .requestMatchers(toH2Console()).permitAll()
+        .requestMatchers("/design", "/fighterlist")
+        .hasRole("USER")
+        .anyRequest().permitAll()
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .defaultSuccessUrl("/design", true)
+        .and()
+        .logout()
+        .logoutSuccessUrl("/")
+        .and()
+        .headers()
+        .frameOptions();
+        http.csrf().disable();
+        return http.build();
 
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/design", true)
-                .and()
-                .logout()
-                .logoutSuccessUrl("/")
-
-                // Make H2-Console non-secured; for debug purposes
-                .and()
-                .csrf()
-                .ignoringRequestMatchers(toH2Console())
-                .and()
-                .headers()
-                .frameOptions()
-                .sameOrigin()
-
-                .and()
-                .build();
     }
 }
