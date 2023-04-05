@@ -8,15 +8,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import com.cpan252.tekkenreborn.model.User;
 import com.cpan252.tekkenreborn.repository.UserRepository;
 
-/**
- * Configuration class for Spring is like a holder of beans. We can use this
- * class to define beans that we want to use in our application.
- */
+
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
@@ -46,7 +44,7 @@ public class SecurityConfig {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-
+                .defaultSuccessUrl("/design", true)
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
@@ -55,9 +53,6 @@ public class SecurityConfig {
                 .and()
                 .csrf()
                 .ignoringRequestMatchers(toH2Console())
-
-                // Allow pages to be loaded in frames from the same origin; needed for
-                // H2-Console
                 .and()
                 .headers()
                 .frameOptions()
