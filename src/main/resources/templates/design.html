@@ -18,7 +18,6 @@
     >
       <h1 class="mb-3">Design Tekken Reborn Fighter</h1>
       <form method="post" th:object="${fighter}">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
         <div th:if="${#fields.hasErrors()}">
           <span> Please correct the problems below and resubmit. </span>
         </div>
